@@ -10,6 +10,9 @@ import com.designPatterns.iterator.BrowseHistory;
 import com.designPatterns.iterator.Iterator;
 import com.designPatterns.memento.Editor;
 import com.designPatterns.memento.History;
+import com.designPatterns.observer.Chart;
+import com.designPatterns.observer.DataSource;
+import com.designPatterns.observer.SpreadSheet;
 import com.designPatterns.state.BrushTool;
 import com.designPatterns.state.Canvas;
 import com.designPatterns.state.SelectionTool;
@@ -23,7 +26,17 @@ import com.designPatterns.templateMethod.TransferMoneyTask;
 public class Main {
 
     public static void main(String[] args) {
-        playWithCommandPattern();
+        playWithObserverPattern();
+    }
+
+    private static void playWithObserverPattern(){
+        DataSource dataSource = new DataSource();
+        SpreadSheet spreadSheet = new SpreadSheet();
+        Chart chart = new Chart();
+        dataSource.addObserver(spreadSheet);
+        dataSource.addObserver(chart);
+
+        dataSource.setValue(2);
     }
 
     private static void playWithCommandPattern(){
