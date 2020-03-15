@@ -7,11 +7,21 @@ import com.designPatterns.memento.History;
 import com.designPatterns.state.BrushTool;
 import com.designPatterns.state.Canvas;
 import com.designPatterns.state.SelectionTool;
+import com.designPatterns.strategy.BlackAndWhiteFilter;
+import com.designPatterns.strategy.ImageStorage;
+import com.designPatterns.strategy.JpegCompressor;
+import com.designPatterns.strategy.PngCompressor;
 
 public class Main {
 
     public static void main(String[] args) {
-        playWithIteratorPattern();
+        playWithStrategyPattern();
+    }
+
+    private static void playWithStrategyPattern(){
+        ImageStorage imageStorage = new ImageStorage();
+        imageStorage.store("a", new JpegCompressor(), new BlackAndWhiteFilter());
+        imageStorage.store("b", new PngCompressor(), new BlackAndWhiteFilter());
     }
 
     private static void playWithIteratorPattern(){
