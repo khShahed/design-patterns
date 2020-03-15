@@ -1,5 +1,11 @@
 package com.designPatterns;
 
+import com.designPatterns.command.*;
+import com.designPatterns.command.editor.BoldCommand;
+import com.designPatterns.command.editor.HtmlDocument;
+import com.designPatterns.command.editor.UndoCommand;
+import com.designPatterns.command.framework.Button;
+import com.designPatterns.command.framework.Command;
 import com.designPatterns.iterator.BrowseHistory;
 import com.designPatterns.iterator.Iterator;
 import com.designPatterns.memento.Editor;
@@ -17,7 +23,32 @@ import com.designPatterns.templateMethod.TransferMoneyTask;
 public class Main {
 
     public static void main(String[] args) {
-        playWithTemplateMethodPattern();
+        playWithCommandPattern();
+    }
+
+    private static void playWithCommandPattern(){
+        CustomerService service = new CustomerService();
+        Command command = new AddCustomerCommand(service);
+        Button button = new Button(command);
+        button.click();
+
+        CompositeCommand compositeCommand = new CompositeCommand();
+        compositeCommand.addCommand(new ResizeCommand());
+        compositeCommand.addCommand(new BlackAndWhiteCommand());
+        compositeCommand.execute();
+        compositeCommand.execute();
+
+        com.designPatterns.command.editor.History history = new com.designPatterns.command.editor.History();
+        HtmlDocument document = new HtmlDocument();
+        document.setContent("Hello World");
+
+        BoldCommand boldCommand = new BoldCommand(document, history);
+        boldCommand.execute();
+        System.out.println(document.getContent());
+
+        UndoCommand undoCommand = new UndoCommand(history);
+        undoCommand.execute();
+        System.out.println(document.getContent());
     }
 
     private static void playWithTemplateMethodPattern(){
