@@ -1,5 +1,7 @@
 package com.designPatterns;
 
+import com.designPatterns.iterator.BrowseHistory;
+import com.designPatterns.iterator.Iterator;
 import com.designPatterns.memento.Editor;
 import com.designPatterns.memento.History;
 import com.designPatterns.state.BrushTool;
@@ -9,7 +11,20 @@ import com.designPatterns.state.SelectionTool;
 public class Main {
 
     public static void main(String[] args) {
-        playWithStatePattern();
+        playWithIteratorPattern();
+    }
+
+    private static void playWithIteratorPattern(){
+        BrowseHistory history = new BrowseHistory();
+        history.push("a");
+        history.push("b");
+        history.push("c");
+
+        Iterator iterator = history.createIterator();
+        while (iterator.hasNext()){
+            System.out.println(iterator.current());
+            iterator.Next();
+        }
     }
 
     private static void playWithStatePattern(){
