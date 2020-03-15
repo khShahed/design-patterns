@@ -11,11 +11,21 @@ import com.designPatterns.strategy.BlackAndWhiteFilter;
 import com.designPatterns.strategy.ImageStorage;
 import com.designPatterns.strategy.JpegCompressor;
 import com.designPatterns.strategy.PngCompressor;
+import com.designPatterns.templateMethod.GenerateReportTask;
+import com.designPatterns.templateMethod.TransferMoneyTask;
 
 public class Main {
 
     public static void main(String[] args) {
-        playWithStrategyPattern();
+        playWithTemplateMethodPattern();
+    }
+
+    private static void playWithTemplateMethodPattern(){
+        TransferMoneyTask transferMoneyTask = new TransferMoneyTask();
+        transferMoneyTask.execute();
+
+        GenerateReportTask generateReportTask = new GenerateReportTask();
+        generateReportTask.execute();
     }
 
     private static void playWithStrategyPattern(){
