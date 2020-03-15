@@ -31,8 +31,8 @@ public class Main {
 
     private static void playWithObserverPattern(){
         DataSource dataSource = new DataSource();
-        SpreadSheet spreadSheet = new SpreadSheet();
-        Chart chart = new Chart();
+        SpreadSheet spreadSheet = new SpreadSheet(dataSource);
+        Chart chart = new Chart(dataSource);
         dataSource.addObserver(spreadSheet);
         dataSource.addObserver(chart);
 

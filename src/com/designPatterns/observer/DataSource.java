@@ -10,6 +10,6 @@ public class DataSource extends Observable {
     public void setValue(int value) {
         System.out.println("Changing value..");
         this.value = value;
-        this.notifyObservers(value);
+        this.notifyObservers();
     }
 }
