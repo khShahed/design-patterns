@@ -2,11 +2,26 @@ package com.designPatterns;
 
 import com.designPatterns.memento.Editor;
 import com.designPatterns.memento.History;
+import com.designPatterns.state.BrushTool;
+import com.designPatterns.state.Canvas;
+import com.designPatterns.state.SelectionTool;
 
 public class Main {
 
     public static void main(String[] args) {
-        playWithMementoPattern();
+        playWithStatePattern();
+    }
+
+    private static void playWithStatePattern(){
+        Canvas canvas = new Canvas();
+
+        canvas.setCurrentTool(new SelectionTool());
+        canvas.mouseUp();
+        canvas.mouseDown();
+
+        canvas.setCurrentTool(new BrushTool());
+        canvas.mouseUp();
+        canvas.mouseDown();
     }
 
     private static void playWithMementoPattern(){
